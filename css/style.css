@@ -1,0 +1,47 @@
+body {
+	background:#f7f7f7;
+	text-align:center;
+	font-family:GostBStandard;
+	padding:14px;
+}
+
+ul {
+	list-style:none;
+	display:inline-block;
+	padding:0px;
+}
+
+li {
+	float:left;
+}
+
+li a {
+	padding:12px;
+	color:black;
+	font-weight:bold;
+	font-size:1.2em;
+}
+
+li::after {
+	display:inline-block;
+	height:1em;
+	width:2px;
+	background-color:black;
+	content:"";
+}
+
+li:last-child::after {
+	display:none;
+}
+
+.red {
+	color:#af161a;
+}
+
+@font-face {
+	font-family: "GostBStandard";
+	src: url("../fonts/GostBStandard.eot");
+	src: url("../fonts/GostBStandard.eot?#iefix") format("embedded-opentype"), url("../fonts/GostBStandard.woff") format("woff"), url("../fonts/GostBStandard.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
