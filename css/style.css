@@ -3,6 +3,7 @@ body {
 	text-align:center;
 	font-family:GostBStandard;
 	padding:14px;
+	word-break:break-word;
 }
 
 ul {
@@ -44,4 +45,14 @@ li:last-child::after {
 	src: url("../fonts/GostBStandard.eot?#iefix") format("embedded-opentype"), url("../fonts/GostBStandard.woff") format("woff"), url("../fonts/GostBStandard.ttf") format("truetype");
 	font-style: normal;
 	font-weight: normal;
+}
+
+.logo
+{
+background-image:url('../img/splash.png');
+background-position:center;
+background-size:cover;
+display: inline-block;
+width:412px;
+height:400px;
 }
