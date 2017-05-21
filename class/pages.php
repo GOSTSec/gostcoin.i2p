@@ -6,7 +6,7 @@ class pages
 	{
 		$this->lang=$lang;
 	}
-	public function findPage($namepage)
+	public function GetPage($namepage)
 	{
 		if(! (file_exists(PAGES.$this->lang."/".$namepage.".php"))  ) 
 		{
@@ -22,11 +22,6 @@ class pages
 		include(PAGES.$this->lang."/".$namepage.".php");
 		return 1;
 	    }
-	}
-	public function GetPage($namepage)
-	{
-		if(! $page = $this->findPage($namepage) ) return 0;
-		return $page;
 	}
 	public function __destruct() {
 			 clearstatcache();
