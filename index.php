@@ -1,10 +1,9 @@
 <?php
 require_once("config.php");
+include("class/language.php");
 include("class/pages.php");
-if(isset($_GET['lang']))
- $pages = new pages($_GET['lang']);
-else
-  $pages = new pages();
+
+$pages = new pages(); 
 $pages->GetPage("header");
 
 if(!isset($_GET['page']))
