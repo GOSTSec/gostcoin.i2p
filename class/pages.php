@@ -9,6 +9,12 @@ class pages extends language
 	 fclose($file);
 	 return $content;
 	}
+	public function create_cache($namepage,$content)
+	{
+		 $page = fopen(CACHE."/".$this->lang."_".$namepage.".htm","wb");
+		 if(!fwrite($page,$content)) return die("Permission denied");
+		 fclose($page);
+	}
 	public function __construct()
 	{
 		$this->lang=$this->getLang();
@@ -29,7 +35,7 @@ class pages extends language
 			 if(filemtime($namefile) >= (filemtime($namefile)+LIFECACHE) )
 			 {
 				 if(!unlink($namefile))
-					die( posix_strerror(posix_get_last_error())."<br>\n" );
+					die( "Permission denied" );
 			 }
 			return print $this->ReadSomeFile($page);
 		}// IF CACHE
@@ -40,11 +46,7 @@ class pages extends language
 		 $content = $this->ReadSomeFile($page);
 		 $content = $this->ParseTemplate($content);
 		 /////////
-		 /*create a cache*/
-		 $page = fopen(CACHE."/".$this->lang."_".$namepage.".htm","wb");
-		 fwrite($page,$content);
-		 fclose($page);
-		 /*^^^*/
+		 $this->create_cache($namepage,$content);
 		 return print (	$content );
 
 	}
