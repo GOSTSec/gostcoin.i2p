@@ -39,7 +39,7 @@ class language
 			 return parse_ini_file(LANG.$filename.".ini"); 
 			   
 			elseif(file_exists(LANG.$filename.".json"))
-			 return json_decode($this->ReadSomeFile(LANG.$filename.".json"));
+			 return json_decode($this->ReadSomeFile(LANG.$filename.".json"),1);
 			
 			else
 			 return die("Not can find a language file".$filename."<br>");
