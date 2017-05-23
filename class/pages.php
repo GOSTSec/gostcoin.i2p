@@ -3,6 +3,7 @@ class pages extends language
 {
 	public function ReadSomeFile($file)
 	{
+	 if($file == NULL) return 0;
 	 $content = "";
 	 while ( !feof($file) ) 
 		$content .= fread($file, PARTOFFILE);
@@ -30,14 +31,14 @@ class pages extends language
 		if(file_exists(CACHE."/".$this->lang."_".$namepage.".php"))
 		{
 			$namefile = CACHE."/".$this->lang."_".$namepage.".php";
-			$page = fopen($namefile,"rb");
+			include($namefile);
 			if(LIFECACHE != 0)
 			 if(filemtime($namefile) >= (filemtime($namefile)+LIFECACHE) )
 			 {
 				 if(!unlink($namefile))
 					die( "Permission denied" );
 			 }
-			return print $this->ReadSomeFile($page);
+			 return 1;
 		}// IF CACHE
 		
 		if(! file_exists(PAGES."/".$namepage.".tlp") ) return header("Location: .");		 
