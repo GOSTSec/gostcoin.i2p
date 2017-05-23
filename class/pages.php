@@ -23,6 +23,7 @@ class pages extends language
 	}
 	public function _($string) // ...
 	{
+		$string = "{".$string."}";
 		$langArray = $this->LanguageConstantGet($this->lang);
 		$keys      = array_keys($langArray);
 		foreach ($keys as &$tmp)
