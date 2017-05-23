@@ -1,15 +1,6 @@
 <?php
 class pages extends language
 {
-	public function ReadSomeFile($file)
-	{
-	 if($file == NULL) return 0;
-	 $content = "";
-	 while ( !feof($file) ) 
-		$content .= fread($file, PARTOFFILE);
-	 fclose($file);
-	 return $content;
-	}
 	public function create_cache($namepage,$content)
 	{
 		 $page = fopen(CACHE."/".$this->lang."_".$namepage.".php","wb");
@@ -22,7 +13,7 @@ class pages extends language
 	}
 	public function ParseTemplate($what)
 	{
-		$what = str_replace(LANG_ARRAY, $this->LanguageConstant($this->lang), $what );
+		$what = str_replace($this->LanguageConstantGet("default"), $this->LanguageConstantGet($this->lang), $what );
 		return $what;
 	}
 	

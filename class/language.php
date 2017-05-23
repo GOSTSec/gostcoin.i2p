@@ -2,31 +2,55 @@
 class language
 {
 	protected $lang;
-	public function getLang()
+	
+	protected function ReadSomeFile($file)
+	{
+	 if($file == NULL) return 0;
+	 $content = "";
+	 while ( !feof($file) ) 
+		$content .= fread($file, PARTOFFILE);
+	 fclose($file);
+	 return $content;
+	}
+	public function checkExistLang($filename)
+	{
+			if(file_exists(LANG.$filename.".ini")) return 1;
+			if(file_exists(LANG.$filename.".json")) return 1;
+			return 0;
+	}
+	protected function getLang()
 	{
 
 		if(
 		isset($_COOKIE['lang']) && 
 		is_string($_COOKIE['lang']) && 
-		file_exists(LANG.$_COOKIE['lang']."."."php") 
+		file_exists(LANG.$_COOKIE['lang'].".ini") 
 		) return $_COOKIE['lang'];
 		
-		elseif( file_exists(LANG.locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']).".php") )
+		elseif( $this->checkExistLang( locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']) ) )
 			return locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		else
-			return DEFAULT_LANG;
+		 return DEFAULT_LANG;
+		
+	}
+	protected function GetLangFile($filename)
+	{
+			if(file_exists(LANG.$filename.".ini"))
+			 return parse_ini_file(LANG.$filename.".ini"); 
+			   
+			elseif(file_exists(LANG.$filename.".json"))
+			 return json_decode($this->ReadSomeFile(LANG.$filename.".json"));
+			
+			else
+			 return die("Not can find a language file".$filename."<br>");
 
 	}
-	public function LanguageConstant($lang=NULL)
+	protected function LanguageConstantGet($lang=NULL)
 	{
-		if($lang == NULL || $lang == "en_US")
-		{
-			require_once("lang/".DEFAULT_LANG.".php");
-			return SOME_LANG;	
-		}
+		if($lang == NULL)
+		 return $this->GetLangFile("default");
+		return $this->GetLangFile($lang);
 ////////////////////////////////////////////////////////////////////////
-			require_once(LANG.$lang.".php");
-			return SOME_LANG;
 	}
 }
 ?>
