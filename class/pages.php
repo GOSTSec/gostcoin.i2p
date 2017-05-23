@@ -13,7 +13,12 @@ class pages extends language
 	}
 	public function ParseTemplate($what)
 	{
-		$what = str_replace($this->LanguageConstantGet("default"), $this->LanguageConstantGet($this->lang), $what );
+		$langArray = $this->LanguageConstantGet($this->lang);
+		$keys      = array_keys($langArray);
+		foreach ($keys as &$tmp)
+    			$tmp = "{".$tmp."}";
+		unset($tmp);
+		$what = str_replace($keys, array_values($langArray), $what );
 		return $what;
 	}
 	

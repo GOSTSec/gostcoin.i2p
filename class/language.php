@@ -20,7 +20,12 @@ class language
 	}
 	public function _($string) // ...
 	{
-		return str_replace($this->LanguageConstantGet("default"), $this->LanguageConstantGet($this->lang), $string );
+		$langArray = $this->LanguageConstantGet($this->lang);
+		$keys      = array_keys($langArray);
+		foreach ($keys as &$tmp)
+    			$tmp = "{".$tmp."}";
+		unset($tmp);
+		return str_replace($keys, array_values($langArray), $string );
 	}
 	protected function getLang()
 	{
