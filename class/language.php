@@ -57,7 +57,7 @@ class language
 	protected function LanguageConstantGet($lang=NULL)
 	{
 		if($lang == NULL)
-		 return $this->GetLangFile("default");
+		 return $this->GetLangFile(DEFAULT_LANG);
 		return $this->GetLangFile($lang);
 ////////////////////////////////////////////////////////////////////////
 	}
