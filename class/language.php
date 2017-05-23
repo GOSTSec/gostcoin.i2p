@@ -18,6 +18,10 @@ class language
 			if(file_exists(LANG.$filename.".json")) return 1;
 			return 0;
 	}
+	public function _($string) // ...
+	{
+		return str_replace($this->LanguageConstantGet("default"), $this->LanguageConstantGet($this->lang), $string );
+	}
 	protected function getLang()
 	{
 
