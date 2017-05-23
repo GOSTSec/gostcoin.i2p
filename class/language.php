@@ -10,7 +10,7 @@ class language
 			return SOME_LANG;	
 		}
 ////////////////////////////////////////////////////////////////////////
-			require_once("lang/".$lang.".php");
+			require_once(LANG.$lang.".php");
 			return SOME_LANG;
 	}
 }

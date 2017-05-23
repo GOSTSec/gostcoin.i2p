@@ -3,7 +3,7 @@ class pages extends language
 {
 	public function __construct($lang='en_US')
 	{
-		if(!file_exists("lang/".$lang."."."php")) return $this->lang="en_US";
+		if(!file_exists(LANG.$lang."."."php")) return $this->lang="en_US";
 		$this->lang=$lang;
 	}
 	public function ParseTemplate($what)
