@@ -1,27 +1,28 @@
 <?php
-class pages
+class pages extends language
 {
-	private $lang;
-	public function __construct($lang='en')
+	public function __construct($lang='en_US')
 	{
+		if(!file_exists("lang/".$lang."."."php")) return $this->lang="en_US";
 		$this->lang=$lang;
 	}
+	public function ParseTemplate($what)
+	{
+		$what = str_replace(LANG_ARRAY, $this->LanguageConstant($this->lang), $what );
+		return $what;
+	}
+	
 	public function GetPage($namepage)
 	{
-		if(! (file_exists(PAGES.$this->lang."/".$namepage.".php"))  ) 
-		{
-		 if(! file_exists(PAGES.$this->lang."/".$namepage.".htm") ) return header("Location: .");
-		 $page = fopen(PAGES.$this->lang."/".$namepage.".htm","rb");
-		 $content = '';
+		if(! file_exists(PAGES."/".$namepage.".tlp") ) return header("Location: .");		 
+		 $page = fopen(PAGES."/".$namepage.".tlp","rb");
+		 $content = "";
 		 
 		 while ( !feof($page) ) 
 		   $content .= fread($page, PARTOFFILE);
-		 
+		 $content = $this->ParseTemplate($content);
 		 return print (	$content );
-		}else { 
-		include(PAGES.$this->lang."/".$namepage.".php");
-		return 1;
-	    }
+
 	}
 	public function __destruct() {
 			 clearstatcache();
