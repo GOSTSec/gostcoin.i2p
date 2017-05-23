@@ -11,7 +11,7 @@ class pages extends language
 	}
 	public function create_cache($namepage,$content)
 	{
-		 $page = fopen(CACHE."/".$this->lang."_".$namepage.".htm","wb");
+		 $page = fopen(CACHE."/".$this->lang."_".$namepage.".php","wb");
 		 if(!fwrite($page,$content)) return die("Permission denied");
 		 fclose($page);
 	}
@@ -27,9 +27,9 @@ class pages extends language
 	
 	public function GetPage($namepage)
 	{
-		if(file_exists(CACHE."/".$this->lang."_".$namepage.".htm"))
+		if(file_exists(CACHE."/".$this->lang."_".$namepage.".php"))
 		{
-			$namefile = CACHE."/".$this->lang."_".$namepage.".htm";
+			$namefile = CACHE."/".$this->lang."_".$namepage.".php";
 			$page = fopen($namefile,"rb");
 			if(LIFECACHE != 0)
 			 if(filemtime($namefile) >= (filemtime($namefile)+LIFECACHE) )
@@ -47,7 +47,7 @@ class pages extends language
 		 $content = $this->ParseTemplate($content);
 		 /////////
 		 $this->create_cache($namepage,$content);
-		 return print (	$content );
+		 $this->GetPage($namepage);
 
 	}
 	public function __destruct() {
