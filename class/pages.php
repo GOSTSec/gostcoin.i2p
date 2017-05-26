@@ -21,7 +21,16 @@ class pages extends language
 		$what = str_replace($keys, array_values($langArray), $what );
 		return $what;
 	}
-	
+	public function _($string) // ...
+	{
+		$string = "{".$string."}";
+		$langArray = $this->LanguageConstantGet($this->lang);
+		$keys      = array_keys($langArray);
+		foreach ($keys as &$tmp)
+    			$tmp = "{".$tmp."}";
+		unset($tmp);
+		return str_replace($keys, array_values($langArray), $string );
+	}
 	public function GetPage($namepage)
 	{
 		if(file_exists(CACHE."/".$this->lang."_".$namepage.".php"))

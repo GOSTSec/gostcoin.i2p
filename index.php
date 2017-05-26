@@ -5,7 +5,7 @@ include("class/pages.php");
 
 $pages = new pages(); 
 $pages->GetPage("header");
-
+//echo $pages->_("nameproject");
 if(!isset($_GET['page']))
  $pages->GetPage("main");
 else
