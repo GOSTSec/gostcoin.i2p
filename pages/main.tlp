@@ -1,0 +1,21 @@
+<body>
+		<span class=logo></span>
+		<h1 class="red">{description}</h1>
+		{clearnet}:
+		<br>
+		<ul>
+			<li><a href="https://github.com/GOSTSec/gostcoin">{wallet}</a></li>
+			<li><a href="https://github.com/GOSTSec/cpuminer-x11-gost">{CPU_miner}</a></li>
+			<li><a href="https://github.com/GOSTSec/ccminer">{GPU_miner}</a></li>
+		</ul>
+		<br>
+		I2P:
+		<br>
+		<ul>
+			<li><a href="http://git.psi.i2p/GOSTSec/gostcoin">{wallet}</a></li>
+			<li><a href="http://git.psi.i2p/GOSTSec/cpuminer-x11-gost">{CPU_miner}</a></li>
+			<li><a href="http://git.psi.i2p/GOSTSec/ccminer">{GPU_miner}</a></li>
+			<li><a href="http://n33uthzyqsbozl2qh5zii2bq2nnvbz6g6c4ew3mwp6uukk6u7wva.b32.i2p/">{exchange}</a></li>
+		</ul>
+</body>
+</html>
