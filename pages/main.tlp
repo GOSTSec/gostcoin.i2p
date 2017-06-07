@@ -16,6 +16,7 @@
 			<li><a href="http://git.psi.i2p/GOSTSec/cpuminer-x11-gost">{CPU_miner}</a></li>
 			<li><a href="http://git.psi.i2p/GOSTSec/ccminer">{GPU_miner}</a></li>
 			<li><a href="http://n33uthzyqsbozl2qh5zii2bq2nnvbz6g6c4ew3mwp6uukk6u7wva.b32.i2p/">{exchange}</a></li>
+      			<li><a href="http://helpu.i2p/GostWallet">{GOSTCoin_Statistic}</a></li>
 		</ul>
 </body>
 </html>
