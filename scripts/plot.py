@@ -70,7 +70,7 @@ def draw_plot(oneline, secondline, dates):
     plt.ylabel(settings.Y_AXIS_NAME)
     plt.title(settings.PLOT_TITLE)
     plt.grid(True)
-    plt.savefig(settings.IMAGE_EXIST_PATH, bbox_inches='tight', dpi=settings.DPI)
+    plt.savefig(settings.IMAGE_EXIST_PATH, bbox_inches='tight', dpi=settings.DPI, transparent=True) 
 
 def generate_graphic_from_nvspc():
     raw_result = response_proxies(settings.NVSPC_HISTORY_API) 
