@@ -11,7 +11,7 @@ import math
 import json
 import urllib
 
-PLOT_TITLE = 'BTC_GST graph'
+PLOT_TITLE = ''
 Y_AXIS_NAME = 'BTC price'
 PNG_FILENAME = '../img/GSTBTC_graph.png'
 DPI = 60 # affects the size of output image
@@ -65,7 +65,10 @@ def draw_plot(oneline, secondline, dates):
     plt.ylabel(Y_AXIS_NAME)
     plt.title(PLOT_TITLE)
     plt.grid(True)
-    plt.savefig(PNG_FILENAME, bbox_inches='tight', dpi=DPI)
+    plt.savefig(PNG_FILENAME,
+                bbox_inches='tight',
+                dpi=DPI,
+                transparent=True)
 
 def generate_graphic():
     data = get_data_from_nvspc()

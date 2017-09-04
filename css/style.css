@@ -45,3 +45,6 @@ li:last-child::after {
 	font-style: normal;
 	font-weight: normal;
 }
+
+h2.ofplot { margin-bottom: .5em; }
+.plot { margin: 0 auto; }
