@@ -2,6 +2,7 @@
 
 # requirements: sudo pip3 install matplotlib
 
+import matplotlib;matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
