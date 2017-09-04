@@ -48,7 +48,7 @@ li:last-child::after {
 .padding{
 
 margin:50px 0px 25px 0px;
-padding:1em 0 0.2em 0;
+padding:0 auto;
 }
 
 
