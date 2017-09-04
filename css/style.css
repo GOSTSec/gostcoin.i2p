@@ -48,7 +48,7 @@ li:last-child::after {
 .hr{
 border-top:3px solid grey;
 margin:50px 0px 25px 0px;
-padding:0 auto;
+padding:1em 0 0.2em 0;
 }
 
 
