@@ -13,7 +13,7 @@ import urllib
 
 PLOT_TITLE = 'BTC_GST graph'
 Y_AXIS_NAME = 'BTC price'
-PNG_FILENAME = 'graph.png'
+PNG_FILENAME = '../img/GSTBTC_graph.png'
 DPI = 60 # affects the size of output image
 
 HISTORY_URL = 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=3'
