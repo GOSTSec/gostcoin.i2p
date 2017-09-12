@@ -11,22 +11,33 @@ import math
 import json
 import urllib
 
-PLOT_TITLE              = ''
-Y_AXIS_NAME             = 'BTC price'
-PNG_THUMB_FILENAME      = '../img/GSTBTC_graph_thumb.png'
-PNG_FILENAME            = '../img/GSTBTC_graph.png'
-THUMB_DPI               = 40		# thumbnail DPI
-DPI                     = 120		# affects the size of output image
+RUR_CONFIG = {
+    'plot_title': '',
+    'y_axis_name': 'RUR price',
+    'png_thumb_filename': '../img/GSTRUR_graph_thumb.png',
+    'png_filename': '../img/GSTRUR_graph.png',
+    'history_url': 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=2',
+}
 
-HISTORY_URL             = 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=3'
-PROXY_URL               = 'http://localhost:4444'
+BTC_CONFIG = {
+    'plot_title': '',
+    'y_axis_name': 'BTC price',
+    'png_thumb_filename': '../img/GSTBTC_graph_thumb.png',
+    'png_filename': '../img/GSTBTC_graph.png',
+    'history_url': 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=3',
+}
 
-def get_data_from_nvspc():
+THUMB_DPI               = 40        # thumbnail DPI
+DPI                     = 120       # affects the size of output image
+
+PROXY_URL = 'http://localhost:4444'
+
+def get_data_from_nvspc(url):
     proxy_handler = urllib.request.ProxyHandler({
         'http': PROXY_URL
     })
     opener = urllib.request.build_opener(proxy_handler)
-    response = opener.open(HISTORY_URL)
+    response = opener.open(url)
     raw_result = response.read().decode()
     data = reversed(json.loads(raw_result)['data']['l'])
     return data
@@ -51,7 +62,7 @@ def adapt_data_for_plot(data):
 
     return oneline, secondline, dates
 
-def draw_plot(oneline, secondline, dates):
+def draw_plot(config, oneline, secondline, dates):
     fig, ax = plt.subplots()
     ax.plot(oneline['x'], oneline['y'])
     ax.plot(secondline['x'], secondline['y'])
@@ -64,23 +75,28 @@ def draw_plot(oneline, secondline, dates):
 
     ax.xaxis.set_major_formatter(ticker.FuncFormatter(format_date))
     fig.autofmt_xdate()
-    plt.ylabel(Y_AXIS_NAME)
-    plt.title(PLOT_TITLE)
+    plt.ylabel(config['y_axis_name'])
+    plt.title(config['plot_title'])
     plt.grid(True)
-    plt.savefig(PNG_FILENAME,
+    plt.savefig(config['png_filename'],
                 bbox_inches='tight',
                 dpi=DPI,
                 transparent=True)
-    plt.savefig(PNG_THUMB_FILENAME,
+    plt.savefig(config['png_thumb_filename'],
                 bbox_inches='tight',
                 dpi=THUMB_DPI,
                 transparent=True)
 
-def generate_graphic():
-    data = get_data_from_nvspc()
+def generate_graphic(config):
+    data = get_data_from_nvspc(config['history_url'])
     oneline, secondline, dates = adapt_data_for_plot(data)
-    draw_plot(oneline, secondline, dates)
+    draw_plot(config, oneline, secondline, dates)
+
+
+def generate_graphics():
+    generate_graphic(RUR_CONFIG)
+    generate_graphic(BTC_CONFIG)
 
 
 if __name__ == "__main__":
-    generate_graphic()
+    generate_graphics()
