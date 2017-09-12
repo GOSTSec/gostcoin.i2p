@@ -11,13 +11,15 @@ import math
 import json
 import urllib
 
-PLOT_TITLE = ''
-Y_AXIS_NAME = 'BTC price'
-PNG_FILENAME = '../img/GSTBTC_graph.png'
-DPI = 60 # affects the size of output image
+PLOT_TITLE              = ''
+Y_AXIS_NAME             = 'BTC price'
+PNG_THUMB_FILENAME      = '../img/GSTBTC_graph_thumb.png'
+PNG_FILENAME            = '../img/GSTBTC_graph.png'
+THUMB_DPI               = 40		# thumbnail DPI
+DPI                     = 120		# affects the size of output image
 
-HISTORY_URL = 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=3'
-PROXY_URL = 'http://localhost:4444'
+HISTORY_URL             = 'http://nvspc.i2p/api/dummy/gettradelog?e=5&c=500&bt=3'
+PROXY_URL               = 'http://localhost:4444'
 
 def get_data_from_nvspc():
     proxy_handler = urllib.request.ProxyHandler({
@@ -68,6 +70,10 @@ def draw_plot(oneline, secondline, dates):
     plt.savefig(PNG_FILENAME,
                 bbox_inches='tight',
                 dpi=DPI,
+                transparent=True)
+    plt.savefig(PNG_THUMB_FILENAME,
+                bbox_inches='tight',
+                dpi=THUMB_DPI,
                 transparent=True)
 
 def generate_graphic():
