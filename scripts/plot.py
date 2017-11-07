@@ -31,13 +31,14 @@ THUMB_DPI               = 40        # thumbnail DPI
 DPI                     = 120       # affects the size of output image
 
 PROXY_URL = 'http://localhost:4444'
+TIMEOUT = 30
 
 def get_data_from_nvspc(url):
     proxy_handler = urllib.request.ProxyHandler({
         'http': PROXY_URL
     })
     opener = urllib.request.build_opener(proxy_handler)
-    response = opener.open(url)
+    response = opener.open(url, None, TIMEOUT)
     raw_result = response.read().decode()
     data = reversed(json.loads(raw_result)['data']['l'])
     return data
