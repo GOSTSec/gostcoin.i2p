@@ -12,7 +12,7 @@ import json
 import urllib
 
 RUR_CONFIG = {
-    'plot_title': '',
+    'plot_title': 'updated at {}'.format(datetime.utcnow().strftime('%Y-%m-%d %H:%M')),
     'y_axis_name': 'RUR price',
     'png_thumb_filename': '../img/GSTRUR_graph_thumb.png',
     'png_filename': '../img/GSTRUR_graph.png',
@@ -20,7 +20,7 @@ RUR_CONFIG = {
 }
 
 BTC_CONFIG = {
-    'plot_title': '',
+    'plot_title': 'updated at {}'.format(datetime.utcnow().strftime('%Y-%m-%d %H:%M')),
     'y_axis_name': 'BTC price',
     'png_thumb_filename': '../img/GSTBTC_graph_thumb.png',
     'png_filename': '../img/GSTBTC_graph.png',
@@ -38,10 +38,14 @@ def get_data_from_nvspc(url):
         'http': PROXY_URL
     })
     opener = urllib.request.build_opener(proxy_handler)
-    response = opener.open(url, None, TIMEOUT)
-    raw_result = response.read().decode()
-    data = reversed(json.loads(raw_result)['data']['l'])
-    return data
+    try:
+        response = opener.open(url, None, TIMEOUT)
+        raw_result = response.read().decode()
+        data = reversed(json.loads(raw_result)['data']['l'])
+        return data
+    except Exception as ex:
+        print(ex)
+        exit(1)
 
 def adapt_data_for_plot(data):
     oneline = {'x': [], 'y': [], }
