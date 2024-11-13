@@ -9,7 +9,7 @@ import matplotlib.ticker as ticker
 from datetime import datetime, timedelta
 import math
 import json
-import urllib
+import urllib.request
 
 RUR_CONFIG = {
     'plot_title': 'updated at {}'.format(datetime.utcnow().strftime('%Y-%m-%d %H:%M')),
