@@ -4,15 +4,10 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<meta charset="utf-8">
 	<title>GOSTcoin</title>
-	<script type="text/javascript" src="js/jquery-1.4.3.min.js"></script>
-	<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="js/fancybox/fancybox.umd.js"></script>
+	<link rel="stylesheet" type="text/css" href="js/fancybox/fancybox.css" media="screen" />
 	<link rel="stylesheet" href="css/style.css">
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("a#chart").fancybox();
-		});
-	</script>
 </head>
 <body>
 	<img src="img/gostcoin.png">
@@ -66,17 +61,30 @@
 	</ul>
 	<br>
 	<h2 class="red">About</h2>
-	<font class="red">Gostcoin (GST)</font> is a digital currency based on blockchain technology. It allows instant payments worldwide with focus on privacy and security of its users.<br>
+	<font class="red">GOSTcoin (GST)</font> is a digital currency based on blockchain technology. It allows instant payments worldwide with focus on privacy and security of its users.<br>
 	<font class="red">GOSTCoin</font> uses Russian government standard cryptography: <font class="red">GOST R 34.10-2012</font> for signature and <font class="red">GOST R 34.11-2012</font> for hash.<br>
 	<br>
 	Hash and Proof-of-work uses <font class="red">GOST_R_3411_2012-256(GOST_R_3411_2012-512())</font> function (256 bit hashsum over 512 bit hashsum of string), assumed in Big Endian.<br>
-	For signatures <font class="red">Gostcoin</font> uses <font class="red">GOST_R_3410_2012</font> algorithm with CryptoPro XchA (1.2.643.2.2.36.0) parameters set over the hash specified above.
+	For signatures <font class="red">GOSTcoin</font> uses <font class="red">GOST_R_3410_2012</font> algorithm with CryptoPro XchA (1.2.643.2.2.36.0) parameters set over the hash specified above.
 	<br>
 	<br>
 	<h2 class="red ofplot">Exchange rate charts</h2>
 	<div class="plot">
-		<div style="display: inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;GST/BTC<br><a id="chart" href="img/GSTBTC_graph.png" title="GST/BTC chart"><img alt="chart" src="img/GSTBTC_graph_thumb.png" /></a></div>
-		<div style="display: inline-block;">&nbsp;&nbsp;GST/RUR<br><a id="chart" href="img/GSTRUR_graph.png" title="GST/RUR chart"><img alt="chart" src="img/GSTRUR_graph_thumb.png" /></a></div>
+		<div style="display: inline-block;">
+			&nbsp;&nbsp;&nbsp;&nbsp;GST/BTC<br>
+			<a id="chart" href="img/GSTBTC_graph.png" data-fancybox data-caption="GST/BTC chart" title="GST/BTC chart">
+				<img alt="chart" src="img/GSTBTC_graph_thumb.png" />
+			</a>
+		</div>
+		<div style="display: inline-block;">
+			&nbsp;&nbsp;GST/RUR<br>
+			<a id="chart" href="img/GSTRUR_graph.png" data-fancybox  data-caption="GST/RUR chart" title="GST/RUR chart">
+				<img alt="chart" src="img/GSTRUR_graph_thumb.png" />
+			</a>
+		</div>
 	</div>
+	<script type="text/javascript">
+		Fancybox.bind("[data-fancybox]", {});
+	</script>
 </body>
 </html>
